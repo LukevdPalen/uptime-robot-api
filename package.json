@@ -1,6 +1,6 @@
 {
-  "name": "babel-library-boilerplate",
-  "version": "4.0.0",
+  "name": "Uptime Robot API",
+  "version": "1.0.0",
   "description": "Libary to ineracting with Uptime Robot API",
   "main": "dist/uptime-robot-dist.js",
   "scripts": {
