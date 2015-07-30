@@ -1,5 +1,5 @@
 {
-  "name": "Uptime Robot API",
+  "name": "uptime-robot-api",
   "version": "1.0.0",
   "description": "Libary to ineracting with Uptime Robot API",
   "main": "dist/uptime-robot-dist.js",
