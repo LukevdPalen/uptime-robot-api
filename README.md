@@ -23,7 +23,7 @@ client.list()
 
 ```javascript
 var Client = require('../test-dist/uptime').Client;
-var Client = require('../test-dist/uptime').Monitor;
+var Monitor = require('../test-dist/uptime').Monitor;
 
 var client = new Client('u19921-b47e987f*********');
 
