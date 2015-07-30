@@ -1,65 +1,73 @@
+'use strict';
+
 import _ from 'lodash';
 
-const PREFIX = 'monitor'
+const PREFIX = 'monitor';
 
-class Monitor{
+var contactArray;
 
-  constructor(options){
-        this.id = options.id,
-        this.friendlyName = options.friendlyname,
-        this.URL= options.url,
-        this.type= options.type || '1',
-        this.subType= options.subtype,
-        this.keywordType= options.keywordtype,
-        this.keywordValue= options.keywordvalue,
-        this.HTTPUsername= options.httpusername,
-        this.HTTPPassword= options.httppassword,
-        this.log = (options.log || []),
-        this.alertContacts= this.contacts,
-        this.interval= options.interval
+class Monitor {
 
+  constructor(options) {
+    this.id = options.id;
+    this.friendlyName = options.friendlyname;
+    this.URL = options.url;
+    this.type = options.type || '1';
+    this.subType = options.subtype;
+    this.keywordType = options.keywordtype;
+    this.keywordValue = options.keywordvalue;
+    this.HTTPUsername = options.httpusername;
+    this.HTTPPassword = options.httppassword;
+    this.log = (options.log || []);
+    this.alertContacts = this.contacts;
+    this.interval = options.interval;
 
-        this._contacts = [];
+    contactArray = [];
   }
 
-  static get singular(){
+  static get singular() {
     return PREFIX;
   }
 
-  static get plural(){
+  static get plural() {
     return `${PREFIX}s`;
   }
 
-  set contact(contact){
+  set contact(contact) {
 
-    this._contacts.push(contact);
+    contactArray.push(contact);
   }
 
-  get contacts(){
-      return _.map(this._contacts, (contact) => {
-        return contact.toString();
+  get contacts() {
+    return _.map(contactArray, (contact) => {
+      return contact.toString();
     }).join('-');
   }
 
-  validate(){
-    if (!_.has(this, 'friendlyName')) return Error('`monitorFriendlyName` not defined');
-    if (!_.has(this, 'URL'))  return  Error('`monitorURL` not defined');
+  validate() {
+    if (!_.has(this, 'friendlyName')) {
+      return Error('`monitorFriendlyName` not defined');
+    } else if (!_.has(this, 'URL')) {
+      return Error('`monitorURL` not defined');
+    }
 
-    return true
+    return true;
   }
 
-  parse(){
-    var keys = _.keys(this)
+  parse() {
+    var keys = _.keys(this);
+
     return _.chain(keys)
-            .map(key => {
+        .map(key => {
+          if (key == 'log' || key.charAt(0) === '_') {
+            return null;
+          }
 
-              if(key == 'log' || key.charAt(0) == '_') return;
-
-              return [PREFIX + key.charAt(0).toUpperCase() + key.slice(1), this[key]];
-            })
-            .object()
-            .value();
+          return [PREFIX + key.charAt(0).toUpperCase() + key.slice(1), this[key]];
+        })
+        .object()
+        .value();
   }
 }
 
-export default Monitor
+export default Monitor;

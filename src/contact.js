@@ -1,43 +1,50 @@
+'use strict';
+
 import _ from 'lodash';
 
 const PREFIX = 'alertContact';
 
-class Contact{
-  constructor(options){
-        this.id = options.id;
-        this.friendlyName = options.friendlyname;
-        this.type= options.type || '2';
-        this.value= options.value;
+class Contact {
+  constructor(options) {
+    this.id = options.id;
+    this.friendlyName = options.friendlyname;
+    this.type = options.type || '2';
+    this.value = options.value;
 
-        this._threshold = 0
-        this._recurrence = 0
+    this.config = {threshold: 0, recurrence: 0};
 
   }
 
-  static get singular(){
+  static get singular() {
     return PREFIX;
   }
 
-  static get plural(){
+  static get plural() {
     return `${PREFIX}s`;
   }
 
-  toString(){
-    return [this.id, this._threshold, this._recurrence].join('_')
+  toString() {
+    return [this.id, this.config.threshold, this.config.recurrence].join('_');
   }
 
-  validate(){
-    if (!_.has(this, 'type'))  return  Error('`type` not defined');
-    if (!_.has(this, 'value'))  return  Error('`type` not defined');
+  validate() {
+    if (!_.has(this, 'type')) {
+      return Error('`type` not defined');
+    } else if (!_.has(this, 'value')) {
+      return Error('`type` not defined');
+    }
 
-    return true
+    return true;
   }
 
-  parse(){
-    var keys = _.keys(this)
+  parse() {
+    var keys = _.keys(this);
+
     return _.chain(keys)
         .map(key => {
-          if(key.charAt(0) == '_') return;
+          if (key === 'config') {
+            return null;
+          }
 
           return [PREFIX + key.charAt(0).toUpperCase() + key.slice(1), this[key]];
         })
@@ -47,4 +54,4 @@ class Contact{
   }
 }
 
-export default Contact
+export default Contact;

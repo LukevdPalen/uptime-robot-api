@@ -1,3 +1,5 @@
+'use strict';
+
 class UptimeRobotServerError extends Error {
   constructor(statusCode, message) {
 
