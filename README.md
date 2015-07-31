@@ -1,5 +1,5 @@
 # Uptime Robot API
-A library to ineracting with Uptime Robot API, written in ES6.
+A library to interact with Uptime Robot API, written in ES6.
 
 ### Features
 
