@@ -9,7 +9,7 @@ A library to ineracting with Uptime Robot API, written in ES6.
 #### Fetching a list of monitors
 
 ```javascript
-var Client = require('uptime-robot-api).Client;
+var Client = require('uptime-robot-api').Client;
 
 var client = new Client('u19921-b47e987f*********');
 
@@ -42,7 +42,7 @@ client.create(importantWebsiteMonitor)
 #### Fetching a list of contacts
 
 ```javascript
-var Client = require('uptime-robot-api).Client;
+var Client = require('uptime-robot-api').Client;
 var Contact = require('uptime-robot-api').Contact;
 
 var client = new Client('u19921-b47e987f*********');

@@ -1,6 +1,6 @@
 {
   "name": "uptime-robot-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Libary to interacting with Uptime Robot API",
   "main": "dist/uptime-robot-dist.js",
   "scripts": {
