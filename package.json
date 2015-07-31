@@ -1,7 +1,7 @@
 {
   "name": "uptime-robot-api",
-  "version": "1.0.4",
-  "description": "Libary to interacting with Uptime Robot API",
+  "version": "1.0.5",
+  "description": "A library to interact with Uptime Robot API, written in ES6.",
   "main": "dist/uptime-robot-dist.js",
   "scripts": {
     "test": "gulp",
